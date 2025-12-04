@@ -1,0 +1,76 @@
+@model IEnumerable<EmployeesApp.Models.Karyawan>
+
+@{
+    ViewData["Title"] = "Monitoring Data Karyawan";
+}
+
+<h2 class="mb-3">Aplikasi Data Pribadi</h2>
+
+<div class="monitoring-panel bg-light border rounded p-3 mb-3">
+    <form method="get" class="row g-2">
+        <div class="col-md-4">
+            <label class="form-label">NIK</label>
+            <input type="number"
+                   name="nik"
+                   class="form-control"
+                   value="@Context.Request.Query["nik"]" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Nama</label>
+            <input type="text"
+                   name="nama"
+                   class="form-control"
+                   value="@Context.Request.Query["nama"]" />
+        </div>
+        <div class="col-md-4 d-flex align-items-end justify-content-end">
+            <button class="btn btn-primary me-2" type="submit">Search</button>
+            <a href="@Url.Action("Create")" class="btn btn-success">Add</a>
+        </div>
+    </form>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>No</th>
+            <th>NIK</th>
+            <th>Nama Lengkap</th>
+            <th>Umur</th>
+            <th>Tanggal Lahir</th>
+            <th>Jenis Kelamin</th>
+            <th>Alamat</th>
+            <th>Negara</th>
+            <th style="width: 180px">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var no = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@no</td>
+                <td>@item.NIK</td>
+                <td>@item.NamaLengkap</td>
+                <td>@item.Umur</td>
+                <td>@item.TanggalLahir?.ToString("dd-MMM-yy")</td>
+                <td>@item.JenisKelamin</td>
+                <td>@item.Alamat</td>
+                <td>@item.Negara</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = item.NIK })" class="text-primary me-2">Detail</a>
+                    <a href="@Url.Action("Edit", new { id = item.NIK })" class="text-warning me-2">Edit</a>
+                    <form asp-action="DeleteConfirmed"
+                          asp-route-id="@item.NIK"
+                          method="post"
+                          class="d-inline"
+                          onsubmit="return confirm('Yakin ingin menghapus data @item.NamaLengkap ?');">
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline text-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            no++;
+        }
+    </tbody>
+</table>

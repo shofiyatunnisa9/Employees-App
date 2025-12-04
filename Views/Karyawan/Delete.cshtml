@@ -1,0 +1,20 @@
+@model EmployeesApp.Models.Karyawan
+
+@{
+    ViewData["Title"] = "Hapus Data";
+}
+
+<h2 class="mb-3">Hapus Data Karyawan</h2>
+
+<div class="alert alert-danger">
+    Anda yakin menghapus data <strong>@Model.NamaLengkap</strong> ?
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+
+    <input type="hidden" asp-for="NIK" />
+
+    <button type="submit" class="btn btn-danger">OK</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Batal</a>
+
+</form>

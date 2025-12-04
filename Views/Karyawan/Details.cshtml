@@ -1,0 +1,38 @@
+@model EmployeesApp.Models.Karyawan
+
+@{
+    ViewData["Title"] = "Detail Data";
+}
+
+<h2 class="mb-3">Aplikasi Data Pribadi - Detail Data</h2>
+
+<div class="card p-4">
+    <div class="mb-3">
+        <label class="form-label">NIK</label>
+        <input class="form-control" value="@Model.NIK" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nama Lengkap</label>
+        <input class="form-control" value="@Model.NamaLengkap" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Jenis Kelamin</label>
+        <input class="form-control" value="@Model.JenisKelamin" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Tanggal Lahir</label>
+        <input class="form-control" value="@Model.TanggalLahir?.ToString("dd-MMM-yy")" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Alamat</label>
+        <textarea class="form-control" readonly>@Model.Alamat</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Negara</label>
+        <input class="form-control" value="@Model.Negara" readonly />
+    </div>
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-secondary mt-3">Kembali</a>
+
+
