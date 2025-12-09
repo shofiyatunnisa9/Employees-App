@@ -8,7 +8,7 @@ Aplikasi web sederhana untuk mengelola **data karyawan** menggunakan **ASP.NET C
 - C#
 - Entity Framework Core InMemory
 - Bootstrap 5
-- jQuery
+
 
 ### Fitur
 
